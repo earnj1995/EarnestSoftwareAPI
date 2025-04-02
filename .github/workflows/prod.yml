@@ -42,6 +42,7 @@ jobs:
     - name: Approval
       uses: trstringer/manual-approval@v1.9.1
       with:
+        secret: ${{ github.TOKEN }}
         approvers: earnj1995
         minimum-approvals: 1
         exclude-workflow-initiator-as-approver: false
