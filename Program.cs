@@ -13,7 +13,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngularApp", policy =>
     {
-        policy.WithOrigins("https://earnestangularcloudproject.azurewebsites.net")
+        policy.WithOrigins("https://cloudfrontend.azurewebsites.net")
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
