@@ -1,0 +1,6 @@
+@EarnestsWebApi_HostAddress = http://localhost:5249
+
+GET {{EarnestsWebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
