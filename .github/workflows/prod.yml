@@ -48,8 +48,8 @@ jobs:
         exclude-workflow-initiator-as-approver: false
 
     # Step 8: Log in to Azure
-    - name: Log in to Azure
-      uses: azure/login@v1
+    - name: Azure Login
+      uses: Azure/login@v2.3.0
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
