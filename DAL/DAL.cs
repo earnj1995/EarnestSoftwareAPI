@@ -18,7 +18,7 @@ namespace EarnestsWebApi.DAL
         public async Task<ProductPage> GetProducts(Page page)
         {
             var TotalProductCount = await _context.Products.CountAsync();
-            var ProductList = await _context.Products.Skip(page.PageSize * page.CurrentPage).Take(page.PageSize).ToListAsync();
+            var ProductList = await _context.Products.Skip(page.PageSize * (page.CurrentPage-1)).Take(page.PageSize).ToListAsync();
 
 
             return new ProductPage { Products = ProductList, CurrentPage = page.CurrentPage, PageSize = page.PageSize, TotalCount = TotalProductCount };
