@@ -1,0 +1,55 @@
+name: Deploy to Azure
+
+on:
+  push:
+    branches:
+      - uat
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Step 1: Checkout the code
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Step 2: Set up .NET Core
+    - name: Set up .NET Core
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0.x' # Use .NET Core 8
+
+    # Step 3: Restore dependencies
+    - name: Restore dependencies
+      run: dotnet restore
+
+    # Step 4: Build the project
+    - name: Build the project
+      run: dotnet build --configuration Release --no-restore
+
+    # Step 5: Publish the project
+    - name: Publish the project
+      run: dotnet publish -c Release -o ./publish
+
+    # Step 6: Zip the published output
+    - name: Zip published output
+      run: |
+        cd publish
+        zip -r EarnestSoftwareAPI.zip .
+
+    # Step 8: Log in to Azure
+    - name: Azure Login
+      uses: Azure/login@v2
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+       
+
+    # Step 9: Deploy to Azure Web App
+    - name: Deploy to Azure Web App
+      run: |
+        az webapp deploy \
+          --resource-group UAT \
+          --name UATEarnestSoftwareAPI \
+          --src-path './publish/EarnestSoftwareAPI.zip' \
+          --type zip
