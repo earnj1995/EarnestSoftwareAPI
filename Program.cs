@@ -13,13 +13,13 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngularApp", policy =>
     {
-        policy.WithOrigins("https://cloudfrontend.azurewebsites.net")
+        policy.WithOrigins("https://earnestangularcloudproject.azurewebsites.net")
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
 });
 builder.Services.AddDbContextPool<EarnestSoftwareContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("UAT")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("PROD")));
     builder.Services.AddScoped<EarnestsWebApi.DAL.DAL>();
 var app = builder.Build();
 
