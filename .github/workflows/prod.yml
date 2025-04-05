@@ -49,10 +49,10 @@ jobs:
 
     # Step 8: Log in to Azure
     - name: Azure Login
-      uses: Azure/login@v1
+      uses: Azure/login@v2
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-        auth-type: IDENTITY
+       
 
     # Step 9: Deploy to Azure Web App
     - name: Deploy to Azure Web App
