@@ -49,7 +49,7 @@ jobs:
 
     # Step 8: Log in to Azure
     - name: Azure Login
-      uses: Azure/login@v2.3.0
+      uses: Azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
