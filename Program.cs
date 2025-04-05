@@ -19,7 +19,7 @@ builder.Services.AddCors(options =>
     });
 });
 builder.Services.AddDbContextPool<EarnestSoftwareContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("PROD")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("UAT")));
     builder.Services.AddScoped<EarnestsWebApi.DAL.DAL>();
 var app = builder.Build();
 
